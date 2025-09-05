@@ -1,0 +1,147 @@
+/* ========================================= */
+/* MAIN CSS FILE               */
+/* This file imports all other CSS modules.  */
+/* ========================================= */
+
+@import url('_variables.css');
+@import url('_base.css');
+@import url('_animations.css');
+@import url('_card.css');
+@import url('_form.css');
+@import url('_modal.css');
+
+
+/* --- *** Dashboard Styles *** --- */
+
+.dashboard .card-header {
+    margin-bottom: 3rem;
+}
+
+.stats-grid {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.stat-card {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--element-border-radius);
+    padding: 1.5rem;
+    text-align: center;
+    flex-grow: 1;
+    min-width: 180px;
+}
+
+.stat-card h3 {
+    font-family: var(--font-tech);
+    font-size: 2.5rem;
+    color: var(--glow-color);
+    text-shadow: 0 0 8px var(--glow-color);
+    margin-bottom: 0.5rem;
+}
+
+.stat-card p {
+    color: rgba(230, 241, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+.nav-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.nav-card {
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: var(--element-border-radius);
+    padding: 2rem;
+    text-align: center;
+    text-decoration: none;
+    color: #e6f1ff;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid var(--glow-color);
+}
+
+.nav-card:hover {
+    transform: translateY(-5px);
+    background: rgba(20, 30, 60, 0.8);
+    border-color: var(--glow-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.nav-icon {
+    font-size: 3rem;
+    line-height: 1;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+.nav-card h2 {
+    color: var(--glow-color);
+    margin-bottom: 0.5rem;
+    font-family: var(--font-tech);
+}
+
+.nav-card p {
+    font-size: 0.9rem;
+    color: rgba(230, 241, 255, 0.7);
+}
+
+/* --- *** NEW: Theme Controller Styles *** --- */
+
+.theme-controller {
+    margin-top: 2rem;
+}
+
+.theme-controller .card-header {
+    margin-bottom: 2rem;
+}
+
+.theme-controller .card-header h2 {
+    color: var(--gold-text);
+    text-shadow: 0 0 8px var(--gold-glow);
+}
+
+.control-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.control-group {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: var(--element-border-radius);
+    padding: 1rem;
+    text-align: center;
+}
+
+.control-group label {
+    display: block;
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+    color: rgba(230, 241, 255, 0.8);
+}
+
+/* Style for color picker */
+.control-group input[type="color"] {
+    width: 80px;
+    height: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: transparent;
+    padding: 2px;
+}
+
+/* Hides the default color picker text in Chrome/Edge */
+.control-group input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+.control-group input[type="color"]::-webkit-color-swatch {
+    border: none;
+    border-radius: 4px;
+}

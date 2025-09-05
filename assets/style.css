@@ -1,0 +1,524 @@
+:root {
+    --glow-color: hsl(180, 100%, 50%);
+    --glow-color-error: hsl(0, 100%, 50%);
+    --glow-color-success: hsl(120, 100%, 50%);
+    
+    /* --- NEW: "Vegas Glow" Color Palette --- */
+    --color-purple: hsl(280, 90%, 55%);
+    --color-hot-pink: hsl(330, 100%, 60%);
+    --color-gold: hsl(50, 100%, 60%);
+    --color-electric-blue: hsl(210, 100%, 60%);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Noto Sans TC', 'Exo 2', sans-serif;
+    /* *** MODIFIED: Changed background to a solid color for the light effect to work best *** */
+    background-color: #0d1117; 
+    color: #e6f1ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    position: relative;
+    isolation: isolate;
+    /* *** MODIFIED: Changed to overflow: auto to allow vertical scrolling when needed *** */
+    overflow-x: hidden;
+}
+
+/* --- NEW: "Vegas Glow" Stage Light Effect --- */
+body::before,
+body::after {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    z-index: -2;
+    background-size: 25% 25%, 35% 35%, 20% 20%, 30% 30%;
+    background-repeat: no-repeat;
+    animation: moveLight 25s linear infinite alternate, 
+               rotateColors 20s linear infinite;
+    will-change: transform, background-position, filter;
+    filter: blur(100px); /* 增加模糊半徑，讓光暈更柔和 */
+    opacity: 0.6; /* 提高不透明度 */
+}
+
+body::before {
+    background-image: 
+        radial-gradient(circle at 60% 80%, var(--color-purple) 0%, transparent 40%),
+        radial-gradient(circle at 20% 30%, var(--color-electric-blue) 0%, transparent 40%),
+        radial-gradient(circle at 70% 10%, var(--color-hot-pink) 0%, transparent 40%),
+        radial-gradient(circle at 40% 50%, var(--color-gold) 0%, transparent 40%);
+    background-blend-mode: color-dodge; /* 使用更強烈的混合模式 */
+    animation-delay: 0s, 5s;
+}
+
+body::after {
+    background-image: 
+        radial-gradient(circle at 40% 20%, var(--color-hot-pink) 0%, transparent 40%),
+        radial-gradient(circle at 80% 90%, var(--color-gold) 0%, transparent 40%),
+        radial-gradient(circle at 10% 50%, var(--color-purple) 0%, transparent 40%);
+    background-blend-mode: color-dodge;
+    animation-direction: alternate-reverse, normal;
+    animation-delay: 2.5s, 10s;
+}
+
+/* 更動感的移動和縮放動畫 */
+@keyframes moveLight {
+    0% { background-position: 0% 0%, 50% 100%, 100% 50%, 25% 25%; transform: scale(1); }
+    25% { background-position: 100% 0%, 0% 50%, 50% 100%, 75% 75%; transform: scale(1.1); }
+    50% { background-position: 50% 100%, 100% 50%, 0% 0%, 25% 75%; transform: scale(1); }
+    75% { background-position: 0% 50%, 50% 0%, 100% 100%, 75% 25%; transform: scale(1.1); }
+    100% { background-position: 0% 0%, 50% 100%, 100% 50%, 25% 25%; transform: scale(1); }
+}
+
+/* 加快顏色旋轉速度 */
+@keyframes rotateColors {
+    0% { filter: hue-rotate(0deg) blur(100px); }
+    100% { filter: hue-rotate(360deg) blur(100px); }
+}
+/* --- End "Vegas Glow" Effect --- */
+
+
+.main-container {
+    width: 100%;
+    max-width: 1400px; /* Restored from your last request */
+    z-index: 1;
+    position: relative;
+}
+
+/* Glassmorphism Card */
+.glass-card {
+    background: rgba(20, 30, 60, 0.6);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 2rem;
+    position: relative;
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* 移除原有的單色旋轉光環效果 */
+.glass-card::before {
+    content: none; 
+}
+
+
+.card-header {
+    text-align: center;
+    margin-bottom: 30px; /* Restored from your version */
+}
+
+.card-header h1 {
+    font-family: 'Exo 2', sans-serif;
+    color: #ffffff;
+    font-size: 2.8em; /* Restored from your version */
+    margin-bottom: 10px;
+    text-shadow: 
+        0 0 10px #00ffff, 
+        0 0 20px rgba(0, 255, 255, 0.7),
+        1px 0 1px rgba(0, 255, 255, 0.5),
+        -1px 0 1px rgba(0, 255, 255, 0.5),
+        0 1px 1px rgba(0, 255, 255, 0.5),
+        0 -1px 1px rgba(0, 255, 255, 0.5); /* Restored from your version */
+}
+
+.card-header p {
+    color: #b0b0b0; /* Restored from your version */
+    font-size: 1.1em; /* Restored from your version */
+}
+
+/* 自動換行網格佈局 */
+.card-grid-container {
+    display: grid; /* Restored from your version */
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Restored from your version */
+    gap: 20px; /* Restored from your version */
+    margin-top: 20px;
+}
+
+.preview-item {
+    background: rgba(255, 255, 255, 0.08); /* Restored from your version */
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.preview-list {
+    list-style: none;
+}
+.song-entry {
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    padding: 1.2rem; 
+    border-radius: 8px;
+    position: relative;
+    flex: 1 1 260px; 
+    max-width: 280px; 
+}
+
+
+.form-group {
+    margin-bottom: 20px; /* Restored from your version */
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #a0e0ff;
+    font-size: 1.1em; /* Restored from your version */
+}
+
+.form-input {
+    width: 100%; /* Changed from calc() for simplicity, same effect */
+    padding: 12px;
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: #e0e0e0;
+    font-size: 1em;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-input:focus {
+    border-color: #00ffff;
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
+    outline: none;
+}
+
+.btn-glow, .btn-secondary {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em; /* Restored from your version */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    margin: 5px;
+}
+
+.btn-glow {
+    background: linear-gradient(135deg, rgba(0, 255, 255, 0.4), rgba(128, 0, 255, 0.4));
+    color: #ffffff;
+    border: 1px solid rgba(0, 255, 255, 0.6);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.btn-glow:hover {
+    background: linear-gradient(135deg, rgba(0, 255, 255, 0.6), rgba(128, 0, 255, 0.6));
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.8), 0 0 30px rgba(128, 0, 255, 0.8);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: #a0e0ff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+.btn-secondary:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+
+.btn-remove {
+    background-color: rgba(255, 0, 0, 0.6);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 10px;
+}
+.btn-remove:hover {
+    background-color: rgba(255, 0, 0, 0.8);
+}
+
+
+.main-actions, .button-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+}
+
+.add-button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+    padding-right: 5px;
+}
+
+.status-message {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    display: none;
+}
+
+.status-message.success {
+    background-color: rgba(0, 255, 0, 0.2);
+    color: #00ff00;
+    border: 1px solid rgba(0, 255, 0, 0.4);
+}
+
+.status-message.error {
+    background-color: rgba(255, 0, 0, 0.2);
+    color: #ff0000;
+    border: 1px solid rgba(255, 0, 0, 0.4);
+}
+
+
+.preview-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.preview-item strong {
+    color: #00ffff;
+    font-weight: bold;
+}
+
+.preview-item p {
+    margin: 5px 0;
+    font-size: 1.05em;
+    color: #e0e0e0;
+}
+
+.preview-item .youtube-embed {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    max-width: 100%;
+    height: 120px;
+    background-color: #000;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-grow: 1;
+}
+
+.preview-item .youtube-embed iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.card-actions {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(0, 255, 255, 0.1);
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-edit {
+    padding: 8px 18px;
+    font-size: 0.9em;
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid rgba(0, 255, 255, 0.4);
+    color: #00ffff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.btn-edit:hover {
+    background: rgba(0, 255, 255, 0.2);
+    color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+    transform: translateY(-1px);
+}
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-backdrop.visible {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: rgba(13, 13, 26, 0.9);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    width: 90%;
+    max-width: 500px;
+    transform: translateY(-20px);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.modal-backdrop.visible .modal-content {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.modal-content h2 {
+    color: #00ffff;
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+#edit-status {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    display: none;
+}
+
+#edit-status.success {
+    background-color: rgba(0, 255, 0, 0.2);
+    color: #00ff00;
+}
+
+#edit-status.error {
+    background-color: rgba(255, 0, 0, 0.2);
+    color: #ff0000;
+}
+
+.export-box {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    padding: 1.5rem;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: 'Space Grotesk', monospace;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    max-height: 50vh;
+    overflow-y: auto;
+}
+
+.reminder-card {
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid var(--glow-color);
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: bold;
+}
+
+#search-input {
+    font-size: 1.2rem;
+    padding: 15px;
+    width: 100%;
+}
+
+.search-results-container {
+    margin-top: 1.5rem;
+    min-height: 200px;
+    max-height: 40vh;
+    overflow-y: auto;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 0.5rem;
+}
+
+.search-placeholder {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+    padding: 3rem 1rem;
+}
+
+.search-result-item {
+    padding: 10px 15px;
+    border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-item .singer {
+    color: var(--glow-color);
+    font-weight: bold;
+}
+
+.search-result-item .song-title {
+    color: #e6f1ff;
+}
+
+.search-results-container::-webkit-scrollbar {
+    width: 8px;
+}
+.search-results-container::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+}
+.search-results-container::-webkit-scrollbar-thumb {
+    background: var(--glow-color);
+    border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+    .main-container { padding: 20px; width: 95%; }
+    .card-header h1 { font-size: 2em; }
+    .card-header p { font-size: 1em; }
+    .form-input { width: 100%; padding: 10px; }
+    .btn-glow, .btn-secondary { padding: 10px 20px; font-size: 1em; }
+    .preview-item .youtube-embed { height: 150px; }
+    .modal-content { padding: 20px; }
+    .modal-content h2 { font-size: 1.5em; }
+}
+
+@media (max-width: 480px) {
+    .main-container { padding: 15px; }
+    .card-header h1 { font-size: 1.8em; }
+    .card-grid-container { grid-template-columns: 1fr; }
+    .main-actions, .button-group { flex-direction: column; gap: 10px; }
+    .btn-glow, .btn-secondary { width: 100%; margin: 5px 0; }
+}

@@ -1,0 +1,33 @@
+/* ========================================= */
+/* GLOBAL VARIABLES                */
+/* (顏色、字體、圓角、陰影等)             */
+/* ========================================= */
+
+:root {
+    /* 主題色 */
+    --glow-color: hsl(180, 100%, 50%);
+    --glow-color-error: hsl(0, 100%, 50%);
+    --glow-color-success: hsl(120, 100%, 50%);
+
+    /* 舞台燈光 "Vegas Glow" 色盤 */
+    --color-purple: hsl(280, 90%, 55%);
+    --color-hot-pink: hsl(330, 100%, 60%);
+    --color-gold: hsl(50, 100%, 60%);
+    --color-electric-blue: hsl(210, 100%, 60%);
+    
+    /* 金屬金 "Metallic Gold" 色盤 */
+    --gold-main: hsl(45, 100%, 60%);
+    --gold-glow: hsla(50, 100%, 70%, 0.6);
+    --gold-dark: hsl(40, 50%, 20%);
+    --gold-text: #fff2d9;
+
+    /* 字體 */
+    --font-primary: 'Noto Sans TC', 'Exo 2', sans-serif;
+    --font-tech: 'Exo 2', 'Space Grotesk', sans-serif;
+    --font-mono: 'Space Grotesk', monospace;
+
+    /* 佈局 */
+    --container-width: 1400px;
+    --card-border-radius: 16px;
+    --element-border-radius: 8px;
+}

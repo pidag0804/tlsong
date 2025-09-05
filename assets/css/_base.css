@@ -1,0 +1,78 @@
+/* ========================================= */
+/* BASE & LAYOUT                  */
+/* (Body, Containers, etc.)          */
+/* ========================================= */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: #0d1117; 
+    color: #e6f1ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    position: relative;
+    isolation: isolate;
+    overflow-x: hidden; /* 確保不會有水平滾動條 */
+}
+
+/* 舞台投射燈背景動畫 */
+body::before,
+body::after {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    z-index: -2;
+    background-size: 25% 25%, 35% 35%, 20% 20%, 30% 30%;
+    background-repeat: no-repeat;
+    animation: moveLight 25s linear infinite alternate, 
+               rotateColors 20s linear infinite;
+    will-change: transform, background-position, filter;
+    filter: blur(100px);
+    opacity: 0.6;
+}
+
+body::before {
+    background-image: 
+        radial-gradient(circle at 60% 80%, var(--color-purple) 0%, transparent 40%),
+        radial-gradient(circle at 20% 30%, var(--color-electric-blue) 0%, transparent 40%),
+        radial-gradient(circle at 70% 10%, var(--color-hot-pink) 0%, transparent 40%),
+        radial-gradient(circle at 40% 50%, var(--color-gold) 0%, transparent 40%);
+    background-blend-mode: color-dodge;
+    animation-delay: 0s, 5s;
+}
+
+body::after {
+    background-image: 
+        radial-gradient(circle at 40% 20%, var(--color-hot-pink) 0%, transparent 40%),
+        radial-gradient(circle at 80% 90%, var(--color-gold) 0%, transparent 40%),
+        radial-gradient(circle at 10% 50%, var(--color-purple) 0%, transparent 40%);
+    background-blend-mode: color-dodge;
+    animation-direction: alternate-reverse, normal;
+    animation-delay: 2.5s, 10s;
+}
+
+.main-container {
+    width: 100%;
+    max-width: var(--container-width);
+    z-index: 1;
+    position: relative;
+}
+
+@media (max-width: 768px) {
+    .main-container { padding: 20px; width: 95%; }
+}
+
+@media (max-width: 480px) {
+    .main-container { padding: 15px; }
+}

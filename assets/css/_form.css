@@ -1,0 +1,145 @@
+/* ========================================= */
+/* FORMS & BUTTONS              */
+/* (Inputs, Buttons, Messages etc.)     */
+/* ========================================= */
+
+.form-group {
+    margin-bottom: 20px;
+}
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #a0e0ff;
+    font-size: 1.1em;
+}
+.form-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: var(--element-border-radius);
+    background-color: rgba(0, 0, 0, 0.4);
+    color: #e0e0e0;
+    font-size: 1em;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.form-input:focus {
+    border-color: #00ffff;
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
+    outline: none;
+}
+.form-input.error {
+    border-color: var(--glow-color-error);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+    animation: shake 0.5s;
+}
+
+.btn-glow, .btn-secondary, .btn-edit, .btn-remove {
+    padding: 12px 25px;
+    border: none;
+    border-radius: var(--element-border-radius);
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    margin: 5px;
+}
+
+.btn-glow {
+    background: linear-gradient(135deg, rgba(0, 255, 255, 0.4), rgba(128, 0, 255, 0.4));
+    color: #ffffff;
+    border: 1px solid rgba(0, 255, 255, 0.6);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+.btn-glow:hover {
+    background: linear-gradient(135deg, rgba(0, 255, 255, 0.6), rgba(128, 0, 255, 0.6));
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.8), 0 0 30px rgba(128, 0, 255, 0.8);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: #a0e0ff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 0.9rem;
+    padding: 8px 18px;
+}
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+.btn-secondary:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.btn-remove {
+    background-color: rgba(255, 0, 0, 0.6);
+    color: white;
+    padding: 5px 10px;
+    margin-left: 10px;
+}
+.btn-remove:hover {
+    background-color: rgba(255, 0, 0, 0.8);
+}
+
+.btn-edit {
+    padding: 8px 18px;
+    font-size: 0.9em;
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid rgba(0, 255, 255, 0.4);
+    color: #00ffff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.btn-edit:hover {
+    background: rgba(0, 255, 255, 0.2);
+    color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+    transform: translateY(-1px);
+}
+
+
+.main-actions, .button-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+}
+.add-button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+    padding-right: 5px;
+}
+
+.status-message {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: var(--element-border-radius);
+    font-weight: bold;
+    text-align: center;
+    display: none;
+}
+.status-message.success {
+    background-color: rgba(0, 255, 0, 0.2);
+    color: var(--glow-color-success);
+    border: 1px solid rgba(0, 255, 0, 0.4);
+}
+.status-message.error {
+    background-color: rgba(255, 0, 0, 0.2);
+    color: var(--glow-color-error);
+    border: 1px solid rgba(255, 0, 0, 0.4);
+}
+
+@media (max-width: 768px) {
+    .form-input { width: 100%; padding: 10px; }
+    .btn-glow, .btn-secondary { padding: 10px 20px; font-size: 1em; }
+}
+@media (max-width: 480px) {
+    .main-actions, .button-group { flex-direction: column; gap: 10px; }
+    .btn-glow, .btn-secondary { width: 100%; margin: 5px 0; }
+}

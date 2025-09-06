@@ -11,7 +11,7 @@
 @import url('_modal.css');
 
 
-/* --- *** Dashboard Styles *** --- */
+/* --- Dashboard Styles --- */
 
 .dashboard .card-header {
     margin-bottom: 3rem;
@@ -91,7 +91,7 @@
     color: rgba(230, 241, 255, 0.7);
 }
 
-/* --- *** NEW: Theme Controller Styles *** --- */
+/* --- Theme Controller Styles --- */
 
 .theme-controller {
     margin-top: 2rem;
@@ -126,7 +126,6 @@
     color: rgba(230, 241, 255, 0.8);
 }
 
-/* Style for color picker */
 .control-group input[type="color"] {
     width: 80px;
     height: 40px;
@@ -137,7 +136,6 @@
     padding: 2px;
 }
 
-/* Hides the default color picker text in Chrome/Edge */
 .control-group input[type="color"]::-webkit-color-swatch-wrapper {
     padding: 0;
 }
@@ -145,8 +143,6 @@
     border: none;
     border-radius: 4px;
 }
-
-/* --- *** NEW: Admin Form Control & Closed Message Styles *** --- */
 
 .theme-controller .control-section {
     margin-top: 2rem;

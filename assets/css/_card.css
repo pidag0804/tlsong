@@ -43,7 +43,8 @@
     margin-top: 20px;
 }
 
-.song-entry, .preview-item {
+.song-entry,
+.preview-item {
     background: rgba(0, 0, 0, 0.3);
     border-radius: var(--element-border-radius);
     padding: 1.2rem;

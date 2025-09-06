@@ -145,3 +145,37 @@
     border: none;
     border-radius: 4px;
 }
+
+/* --- *** NEW: Admin Form Control & Closed Message Styles *** --- */
+
+.theme-controller .control-section {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.theme-controller .control-section h3 {
+    text-align: center;
+    color: var(--gold-text);
+    margin-bottom: 1.5rem;
+}
+
+.theme-controller .form-input {
+    width: 100%;
+}
+
+.closed-message-card {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: rgba(0,0,0,0.3);
+    border-radius: var(--element-border-radius);
+}
+
+.closed-message-card h2 {
+    color: var(--glow-color-error);
+    margin-bottom: 1rem;
+}
+
+.closed-message-card p {
+    color: rgba(255, 255, 255, 0.7);
+}

@@ -23,11 +23,12 @@ function getYouTubeEmbedUrl($url) {
 
 // HSL 轉 HEX 顏色格式的工具函式
 function hslToHex($hsl_string) {
+    // 如果傳入的已經是 HEX 格式，直接回傳
     if (str_starts_with($hsl_string, '#')) {
-        return $hsl_string; // Already HEX
+        return $hsl_string;
     }
     if (!preg_match('/hsl\((\d+),\s*(\d+)%,\s*(\d+)%\)/', $hsl_string, $matches)) {
-        return '#000000'; // Return black on failure
+        return '#000000'; // 轉換失敗則回傳黑色
     }
     list(, $h, $s, $l) = $matches;
 

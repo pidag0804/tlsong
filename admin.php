@@ -63,8 +63,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>管理後台</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&family=Noto+Sans+TC:wght@400;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/main.css">
-    </head>
+
+    <?php
+    if (file_exists(THEME_SETTINGS_FILE)) {
+        $settings_json = file_get_contents(THEME_SETTINGS_FILE);
+        $current_theme = json_decode($settings_json, true);
+        if ($current_theme && is_array($current_theme)) {
+            echo "<style>:root {\n";
+            foreach ($current_theme as $key => $value) {
+                if (str_starts_with($key, 'color-') || $key === 'glow-color') {
+                    echo "\t--" . htmlspecialchars($key) . ": " . htmlspecialchars($value) . ";\n";
+                }
+            }
+            echo "}\n</style>\n";
+        }
+    }
+    ?>
+</head>
 <body data-particle-effect="true">
     <div class="main-container">
 

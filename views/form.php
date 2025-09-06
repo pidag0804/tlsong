@@ -1,8 +1,37 @@
 <?php
-$pdo = getDbConnection();
-$stmt_count = $pdo->prepare("SELECT COUNT(*) FROM user_recommendations WHERE user_id = ?");
-$stmt_count->execute([$_SESSION['user_id']]);
-$existing_count = $stmt_count->fetchColumn();
+// 檢查推薦是否開放
+if (!isRecommendationPeriodActive()) {
+    // --- 如果不在開放期間，顯示關閉訊息 ---
+    $settings = json_decode(file_get_contents(FORM_SETTINGS_FILE), true);
+    $start_date = $settings['start_date'] ?? '未設定';
+    $end_date = $settings['end_date'] ?? '未設定';
+?>
+    <div class="glass-card closed-message-card">
+        <div class="card-header">
+            <h2>推薦系統目前關閉</h2>
+            <p>感謝您的參與，請於開放時間內再次前來推薦。</p>
+        </div>
+        <div class="stats-grid">
+             <div class="stat-card">
+                <h3><?= htmlspecialchars($start_date) ?></h3>
+                <p>開始日期</p>
+            </div>
+            <div class="stat-card">
+                <h3><?= htmlspecialchars($end_date) ?></h3>
+                <p>結束日期</p>
+            </div>
+        </div>
+        <div class="button-group">
+            <a href="index.php?page=dashboard" class="btn-glow">返回首頁</a>
+        </div>
+    </div>
+<?php
+} else {
+    // --- 如果在開放期間，顯示原有的表單內容 ---
+    $pdo = getDbConnection();
+    $stmt_count = $pdo->prepare("SELECT COUNT(*) FROM user_recommendations WHERE user_id = ?");
+    $stmt_count->execute([$_SESSION['user_id']]);
+    $existing_count = $stmt_count->fetchColumn();
 ?>
 <div class="glass-card">
     <div class="card-header">
@@ -58,3 +87,6 @@ $existing_count = $stmt_count->fetchColumn();
         </div>
     </div>
 </div>
+<?php
+} // 結束 else 區塊
+?>

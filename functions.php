@@ -58,4 +58,45 @@ function hue2rgb($p, $q, $t) {
     return $p;
 }
 
-// (已移除最後多餘的大括號)
+/**
+ * 檢查目前是否在推薦開放期間內
+ * @return bool
+ */
+function isRecommendationPeriodActive() {
+    // 檢查設定檔是否存在
+    if (!file_exists(FORM_SETTINGS_FILE)) {
+        return true; // 如果設定檔不存在，預設為開放
+    }
+    
+    $settings_json = file_get_contents(FORM_SETTINGS_FILE);
+    $settings = json_decode($settings_json, true);
+    
+    $start_date_str = $settings['start_date'] ?? '';
+    $end_date_str = $settings['end_date'] ?? '';
+
+    // 如果日期未設定，預設為開放
+    if (empty($start_date_str) || empty($end_date_str)) {
+        return true;
+    }
+
+    try {
+        // 設定時區為臺北時間
+        $timezone = new DateTimeZone('Asia/Taipei');
+        
+        // 建立開始日期物件 (從當天 00:00:00 開始)
+        $start_date = new DateTime($start_date_str . ' 00:00:00', $timezone);
+        
+        // 建立結束日期物件 (到當天 23:59:59 結束)
+        $end_date = new DateTime($end_date_str . ' 23:59:59', $timezone);
+        
+        // 取得目前時間
+        $now = new DateTime('now', $timezone);
+        
+        // 判斷目前時間是否在區間內
+        return $now >= $start_date && $now <= $end_date;
+        
+    } catch (Exception $e) {
+        // 如果日期格式錯誤，預設為開放以避免系統完全鎖定
+        return true;
+    }
+}
